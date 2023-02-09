@@ -1,28 +1,52 @@
+//* Imports
+const Posts = require('../models/posts.models');
 
+//* GET all posts
 const findAllPosts = async() => {
-    //? Your code here:
+    const data = await Posts.findAll();
+    return data;
+};
 
+//* GET post by ID
+const findPostById = async id => {
+    const data = await Posts.findOne({
+        where: {
+            id: id
+        }
+    });
+    return data;
+};
+
+//* POST new post
+const createPost = async postObj => {
+    const newPost = {
+        content: postObj.content,
+        userName: postObj.userName,
+        isPublished: postObj.isPublished
+    };
+    const data = await Posts.create( newPost );
+    return data;
 }
 
-const findPostById = async() => {
-    //? Your code here:
+//* UPDATE post
+const updatePost = async ( id, postObj ) => {
+    const data = await Posts.update( postObj, {
+        where: {
+            id: id
+        }
+    });
+    return data[0];
+};
 
-}
-
-const createPost = async() => {
-    //? Your code here:
-
-}
-
-const updatePost = async() => {
-    //? Your code here:
-
-}
-
-const deletePost = async() => {
-    //? Your code here:
-
-}
+//* DELETE post
+const deletePost = async id => {
+    const data = await Posts.destroy({
+        where: {
+            id: id
+        }
+    });
+    return data;
+};
 
 module.exports = {
     findAllPosts,
