@@ -13,7 +13,7 @@ const config = {
             dialect: 'postgres',
             host: 'localhost',
             username: process.env.DEV_DB_USER,
-            password: 'Aen3ri@Syl',
+            password: process.env.DEV_DB_PASS,
             port: 5432,
             database: 'blog-db',
             define: {
